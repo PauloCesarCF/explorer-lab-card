@@ -9,6 +9,7 @@ function setCardTypes(type) {
   const colors = {
     visa: ["#436D99", "#2D57F2"],
     mastercard: ["#DF6F29", "#C69347"],
+    discover: ["#E8A86D", "#000000"],
     default: ["black", "gray"]
   }
 
@@ -58,6 +59,11 @@ const cardNumberPattern = {
       mask: "0000 0000 0000 0000",
       regex: /(^5[1-5]\d{0,2}|^22[2-9]\d|^2[3-7]\d{0,2})\d{0,12}/,
       cardtype: "mastercard"
+    },
+    {
+      mask: "0000 0000 0000 0000",
+      regex: /^0611\d{0,12}/,
+      cardtype: "discover"
     },
     {
       mask: "0000 0000 0000 0000",
@@ -112,6 +118,7 @@ cardNumberMasked.on("accept", () => {
 
 function updateCardNumber(number) {
   const ccNumber = document.querySelector(".cc-number")
+  console.log(Number.length)
 
   ccNumber.innerText = number.length === 0 ? "1234 5678 9012 3456" : number
 }
